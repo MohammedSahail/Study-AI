@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f7f8fc" />
+  <meta name="description" content="StudyMate AI is a student study-planning prototype with a focus timer, quick quiz, and voice readout." />
+  <title>StudyMate AI — your study sidekick</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#home" aria-label="StudyMate home"><span class="brand-icon">✳</span><span>study<span class="brand-light">mate</span></span></a>
+      <div class="side-label">YOUR SPACE</div>
+      <nav class="nav-list" aria-label="Main navigation">
+        <a class="nav-link active" href="#home"><span>⌂</span> Overview</a>
+        <a class="nav-link" href="#planner"><span>▤</span> Study planner</a>
+        <a class="nav-link" href="#focus"><span>◷</span> Focus room</a>
+        <a class="nav-link" href="#quiz"><span>✎</span> Quick quiz</a>
+      </nav>
+      <div class="sidebar-card">
+        <div class="sparkle">✦</div>
+        <strong>Little steps add up.</strong>
+        <p>Show up for one focused session today. You’ve got this.</p>
+        <div class="week-dots" aria-label="Weekly study streak"><i class="done">M</i><i class="done">T</i><i class="done">W</i><i>T</i><i>F</i><i>S</i><i>S</i></div>
+      </div>
+      <div class="profile"><div class="avatar">S</div><div><strong>Student</strong><small>Your learning space</small></div><span class="more">···</span></div>
+    </aside>
+
+    <main id="home" class="main-content">
+      <header class="topbar"><div class="breadcrumb">My workspace <span>/</span> <b>Overview</b></div><div class="top-actions"><span class="today-label" id="today-label"></span><button class="icon-button" aria-label="Notifications">♧<i></i></button><div class="avatar small">S</div></div></header>
+
+      <section class="welcome-row">
+        <div><div class="eyebrow"><span class="status-dot"></span> YOUR CALM CORNER TO LEARN</div><h1>A little progress goes<br class="desktop-break" /> a <span>long way.</span></h1><p class="welcome-copy">Hey there! Ready to make today count? Let’s find your flow.</p></div>
+        <div class="welcome-art" aria-hidden="true"><div class="sun"></div><div class="art-book">✦<br/><small>one page<br/>at a time</small></div><div class="art-plant">❋</div></div>
+      </section>
+
+      <section class="stats-grid" aria-label="Study summary">
+        <article class="stat-card"><div class="stat-top"><span class="stat-icon lilac">◷</span><span class="stat-trend">THIS WEEK</span></div><div class="stat-value"><b>3.5</b><span>hrs</span></div><div class="stat-caption">Focused learning</div><div class="mini-bars"><i style="height:35%"></i><i style="height:50%"></i><i style="height:42%"></i><i style="height:75%"></i><i style="height:58%"></i><i style="height:92%"></i><i style="height:65%"></i></div></article>
+        <article class="stat-card"><div class="stat-top"><span class="stat-icon peach">✦</span><span class="stat-trend">KEEP IT UP</span></div><div class="stat-value"><b id="streak-value">3</b><span>days</span></div><div class="stat-caption">Your study streak</div><div class="streak-row"><span>🔥</span><span>One session today keeps it going!</span></div></article>
+        <article class="stat-card"><div class="stat-top"><span class="stat-icon mint">✓</span><span class="stat-trend">YOU’RE ON TRACK</span></div><div class="stat-value"><b id="task-count">2</b><span>of 4</span></div><div class="stat-caption">Tasks completed today</div><div class="progress-track"><div id="task-progress" style="width:50%"></div></div></article>
+      </section>
+
+      <section class="content-grid">
+        <div class="left-column">
+          <article class="panel planner-panel" id="planner">
+            <div class="panel-heading"><div><div class="section-kicker">YOUR GAME PLAN</div><h2>Today’s study plan <span class="heading-spark">✳</span></h2></div><button id="generate-plan" class="text-button">✦ Make me a plan</button></div>
+            <p class="panel-subtitle">A few small wins, one step at a time.</p>
+            <div id="plan-list" class="task-list">
+              <label class="task-row"><input type="checkbox" checked /><span class="checkmark"></span><span class="task-copy"><b>Review biology notes</b><small>Chapter 4 · 25 min</small></span><span class="task-tag biology">BIO</span></label>
+              <label class="task-row"><input type="checkbox" checked /><span class="checkmark"></span><span class="task-copy"><b>Practice algebra problems</b><small>Equations · 30 min</small></span><span class="task-tag math">MATH</span></label>
+              <label class="task-row"><input type="checkbox" /><span class="checkmark"></span><span class="task-copy"><b>Read history chapter</b><small>Industrial Revolution · 20 min</small></span><span class="task-tag history">HIST</span></label>
+              <label class="task-row"><input type="checkbox" /><span class="checkmark"></span><span class="task-copy"><b>Take a well-earned break</b><small>Stretch, hydrate, breathe · 10 min</small></span><span class="task-tag break">RESET</span></label>
+            </div>
+            <form id="add-task-form" class="add-task-form"><input id="new-task" maxlength="70" placeholder="Add a task for today…" aria-label="New task" /><button aria-label="Add task" type="submit">＋</button></form>
+          </article>
+
+          <article class="panel focus-panel" id="focus">
+            <div class="focus-copy"><div class="section-kicker">A MOMENT FOR YOU</div><h2>Find your focus.</h2><p>One thing at a time. Take a breath, then begin.</p><div class="timer-controls"><button class="primary-button" id="timer-toggle">Start a focus session <span>→</span></button><button class="reset-button" id="timer-reset" aria-label="Reset timer">↻</button></div></div>
+            <div class="timer-visual"><svg viewBox="0 0 120 120" role="img" aria-label="Focus timer"><circle class="timer-track" cx="60" cy="60" r="51"/><circle id="timer-ring" class="timer-ring" cx="60" cy="60" r="51"/></svg><div class="timer-text"><strong id="timer-display">25:00</strong><small id="timer-state">READY WHEN YOU ARE</small></div></div>
+          </article>
+        </div>
+
+        <div class="right-column">
+          <article class="assistant-card">
+            <div class="assistant-head"><div class="assistant-mark">✳</div><div><b>Your StudyMate</b><small><span class="status-dot"></span> Here to help</small></div><button id="speak-button" class="speak-button" title="Read suggestion aloud" aria-label="Read suggestion aloud">♫</button></div>
+            <div class="assistant-message"><span class="message-star">✦</span><p id="assistant-message">You’ve already checked off two tasks — that’s a lovely start! What would you like to work on next?</p></div>
+            <div class="assistant-note">DEMO STUDY BUDDY · SAMPLE RESPONSES</div>
+            <div class="suggestion-chips"><button data-prompt="plan">Help me plan</button><button data-prompt="motivate">I need a boost</button><button data-prompt="break">Suggest a break</button></div>
+          </article>
+
+          <article class="panel quiz-panel" id="quiz"><div class="panel-heading"><div><div class="section-kicker">A TINY BRAIN BREAK</div><h2>Quick quiz <span class="quiz-icon">✎</span></h2></div><span class="quiz-count" id="quiz-count">1 / 3</span></div><div class="quiz-topic">BIOLOGY · THE CELL</div><p class="quiz-question" id="quiz-question">What is the powerhouse of the cell?</p><div class="answer-list" id="answer-list"></div><div class="quiz-feedback" id="quiz-feedback" aria-live="polite"></div><button id="next-question" class="quiz-next" hidden>Next question <span>→</span></button></article>
+          <div class="voice-note"><span>♫</span><p><b>On the go?</b> Tap the music note to hear your study nudge read aloud.</p></div>
+        </div>
+      </section>
+      <footer>Made with care for curious minds <span>✳</span><small>Prototype · no Alexa+ connection</small></footer>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
